@@ -1,17 +1,18 @@
 package me.mjaroszewicz;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
+import javax.persistence.*;
 
 @Entity
+@Table(name = "user")
 public class User {
 
-    @GeneratedValue
+    @GeneratedValue( strategy = GenerationType.AUTO)
+    @Id
     private long userId;
 
     private String name;
 
-    private String hashedPassword;
+    private String password;
 
     public User(){}
 
@@ -31,11 +32,11 @@ public class User {
         this.name = name;
     }
 
-    public String getHashedPassword() {
-        return hashedPassword;
+    public String getPassword() {
+        return password;
     }
 
-    public void setHashedPassword(String hashedPassword) {
-        this.hashedPassword = hashedPassword;
+    public void setPassword(String password) {
+        this.password = password;
     }
 }
