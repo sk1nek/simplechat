@@ -1,4 +1,4 @@
-package me.mjaroszewicz;
+package me.mjaroszewicz.user;
 
 
 import org.springframework.beans.factory.annotation.Autowired;

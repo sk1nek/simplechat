@@ -1,9 +1,17 @@
 package me.mjaroszewicz.chat;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import java.util.HashSet;
 import java.util.LinkedList;
 
+@Entity
 public class Conversation {
+
+    @Id
+    @GeneratedValue
+    private long id;
 
     private LinkedList<Long> messageIds;
 

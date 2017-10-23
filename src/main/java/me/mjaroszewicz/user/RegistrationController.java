@@ -1,4 +1,4 @@
-package me.mjaroszewicz;
+package me.mjaroszewicz.user;
 
 import me.mjaroszewicz.auth.SecurityService;
 import org.slf4j.Logger;

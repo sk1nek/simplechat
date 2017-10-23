@@ -1,4 +1,4 @@
-package me.mjaroszewicz;
+package me.mjaroszewicz.config;
 
 
 import org.springframework.context.annotation.Configuration;

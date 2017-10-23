@@ -1,4 +1,4 @@
-package me.mjaroszewicz;
+package me.mjaroszewicz.user;
 
 import javax.persistence.*;
 
