@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>Lel lol</title>
@@ -14,7 +14,12 @@
 <noscript><h2 style="color: #ff0000">Enable JavaScript, please ;) </h2></noscript>
 <div id="chat-window">
     <table>
-
+        <th:block th:each="conversation : ${conversations}">
+            <tr>
+                <td th:text="${conversation.getParticipants()"></td>
+                <td th:text="${conversation.getLastMessage()}"></td>
+            </tr>
+        </th:block>
     </table>
 
 </div>

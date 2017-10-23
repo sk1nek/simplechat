@@ -1,5 +1,7 @@
 package me.mjaroszewicz.chat;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -8,6 +10,9 @@ import java.util.LinkedList;
 
 @Entity
 public class Conversation {
+
+    @Autowired
+    MessageRepository msgRepo;
 
     @Id
     @GeneratedValue
@@ -32,5 +37,12 @@ public class Conversation {
 
     public void setParticipants(HashSet<Long> participants) {
         this.participants = participants;
+    }
+
+    public String getLastMessage(){
+        if(messageIds != null)
+            return msgRepo.findOne(messageIds.getLast()).getContent();
+        else
+            return "";
     }
 }
