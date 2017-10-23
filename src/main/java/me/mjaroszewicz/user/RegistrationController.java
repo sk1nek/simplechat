@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
@@ -37,7 +38,7 @@ public class RegistrationController extends WebMvcConfigurerAdapter {
     @RequestMapping("/register")
     public String getRegistrationPage(RegistrationForm registrationForm) {
 
-        log.info(((Authentication) SecurityContextHolder.getContext().getAuthentication()).getName());
+//        log.info(((Authentication) SecurityContextHolder.getContext().getAuthentication()).getName());
 
         return "register";
     }
@@ -54,16 +55,29 @@ public class RegistrationController extends WebMvcConfigurerAdapter {
         return "redirect:/";
     }
 
+//    @GetMapping("/login")
+//    public String login(Model mdl, String err, String logout){
+//
+//        if(err != null)
+//            mdl.addAttribute("error", "Your login credentials are invalid");
+//
+//        if(logout != null)
+//            mdl.addAttribute("message", "You have been logged out successfully");
+//
+//        return "login";
+//    }
+
     @GetMapping("/login")
-    public String login(Model mdl, String err, String logout){
-
-        if(err != null)
-            mdl.addAttribute("error", "Your login credentials are invalid");
-
-        if(logout != null)
-            mdl.addAttribute("message", "You have been logged out successfully");
+    public String getLoginPage(LoginForm loginForm){
 
         return "login";
+    }
+
+    @PostMapping("/login")
+    public String login(@ModelAttribute LoginForm loginForm){
+        securityService.autologin(loginForm.getUsername(), loginForm.getPassword());
+
+        return "redirect:/";
     }
 
 

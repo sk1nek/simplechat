@@ -5,9 +5,9 @@
     <title>Title</title>
 </head>
 <body>
-<form method="post" action="#" th:action="@{/register}" th:object="${registrationForm}">
-    <input type="text" th:field="*{name}" placeholder="username"/>
-    <p th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name Error</p>
+<form method="post" action="#" th:action="@{/login}" th:object="${loginForm}">
+    <input type="text" th:field="*{username}" placeholder="username"/>
+    <p th:if="${#fields.hasErrors('username')}" th:errors="*{username}">Name Error</p>
     <input type="password" th:field="*{password}" placeholder="pass..."/>
     <p th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Pwd error</p>
     <input type="submit" value="submit"/>

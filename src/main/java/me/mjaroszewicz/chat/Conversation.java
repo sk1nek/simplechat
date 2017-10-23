@@ -5,12 +5,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Transient;
 import java.util.HashSet;
 import java.util.LinkedList;
 
 @Entity
 public class Conversation {
 
+    @Transient
     @Autowired
     MessageRepository msgRepo;
 

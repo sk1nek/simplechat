@@ -16,6 +16,11 @@ public class User {
 
     public User(){}
 
+    public User(String name, String password) {
+        this.name = name;
+        this.password = password;
+    }
+
     public long getUserId() {
         return userId;
     }

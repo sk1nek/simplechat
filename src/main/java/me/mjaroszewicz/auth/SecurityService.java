@@ -42,7 +42,6 @@ public class SecurityService {
             log.debug(username + " logged in succesfully");
         }
 
-
     }
 
 }
