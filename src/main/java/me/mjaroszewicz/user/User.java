@@ -6,7 +6,7 @@ import javax.persistence.*;
 @Table(name = "user")
 public class User {
 
-    @GeneratedValue( strategy = GenerationType.AUTO)
+    @GeneratedValue( strategy = GenerationType.SEQUENCE)
     @Id
     private long userId;
 

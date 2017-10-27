@@ -1,14 +1,11 @@
 package me.mjaroszewicz.chat;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.Date;
 
 @Entity
-public class Message {
+public class Message implements Comparable<Message>{
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -17,6 +14,8 @@ public class Message {
     private LocalDateTime timestamp;
 
     private long authorId;
+
+    private long targetId;
 
     private String content;
 
@@ -52,5 +51,23 @@ public class Message {
 
     public void setId(long id) {
         this.id = id;
+    }
+
+    public long getTargetId() {
+        return targetId;
+    }
+
+    public void setTargetId(long targetId) {
+        this.targetId = targetId;
+    }
+
+    /**
+     * Function that compares messages by chronological order
+     * @param message Message to be compared
+     * @return -1 if message is older, 0 if timestamps are equal, 1 if it is younger
+     */
+    @Override
+    public int compareTo(Message message) {
+        return this.timestamp.compareTo(message.timestamp);
     }
 }

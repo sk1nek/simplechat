@@ -26,5 +26,8 @@ public class MockEntityPopulator {
         userRepo.save(new User("foo", "barbar"));
         userRepo.save(new User("bar", "foofoo"));
         log.info("Test users saved");
+
+
+        System.out.println(userRepo.findOneByName("foo").getUserId());
     }
 }

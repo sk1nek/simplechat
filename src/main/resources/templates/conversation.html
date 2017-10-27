@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Lel lol</title>
+    <link href="/webjars/bootstrap/css/boostrap.min.css" rel="stylesheet"/>
+    <link href="/style.css" rel="stylesheet" type="text/css"/>
+    <script src="/webjars/jquery/jquery.min.js"></script>
+    <script src="/webjars/sockjs-client/sockjs.min.js"></script>
+    <script src="/webjars/stomp-websocket/stomp.min.js"></script>
+    <script src="/app.js"></script>
+</head>
+<body>
+<noscript><h2 style="color: #ff0000">Enable JavaScript, please ;) </h2></noscript>
+<div class="conversation">
+    <table>
+
+        <tr>
+            <td class="message message-left">
+                left
+            </td>
+        </tr>
+        <tr>
+            <td class="message message-right">
+                right
+            </td>
+        </tr>
+
+        <p th:if="${isEmpty} == 'true'" >You havent talked to that user yet ;(</p>
+
+            <th:block th:if="${isEmpty} =='false'" th:each="message: ${conversation}">
+                <tr>
+                    <th:block th:switch="${message.authorId} == ${loggedUserId}">
+                        <td th:case="true" class="message message-right" th:text="${message.content}"/>
+                        <td th:case="false" class="message message-left" th:text="${message.content}"/>
+                    </th:block>
+                </tr>
+
+
+        </th:block>
+
+    </table>
+
+</div>
+</body>
+</html>
