@@ -1,5 +1,7 @@
 package me.mjaroszewicz;
 
+
+@Deprecated
 public class Greeting {
 
     private String content;

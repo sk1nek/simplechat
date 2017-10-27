@@ -1,5 +1,6 @@
 package me.mjaroszewicz;
 
+@Deprecated
 public class HelloMessage {
 
     private String name;

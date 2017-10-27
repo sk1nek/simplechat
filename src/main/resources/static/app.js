@@ -6,11 +6,6 @@ function loadingSequence(){
     connect();
 }
 
-function refresher() {
-    while(true){
-        window.setTimeout(sendName, 1000);
-    }
-}
 
 function connect() {
     var socket = new SockJS('/websocket');
