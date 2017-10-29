@@ -1,5 +1,8 @@
 var stompClient = null;
 
+var headerName = "${_csrf.headerName}";
+var token = "${_csrf.token}";
+
 window.onload = loadingSequence();
 
 function loadingSequence(){
@@ -7,14 +10,18 @@ function loadingSequence(){
 }
 
 
+
+
 function connect() {
-    var socket = new SockJS('/websocket');
+    var socket = new SockJS('/spring-websocket');
     stompClient = Stomp.over(socket);
-    stompClient.connect({}, function (frame) {
+    var headers = {};
+    headers[headerName] = token;
+    stompClient.connect(headers, function (frame) {
         console.log('Connected: ' + frame);
-        stompClient.subscribe('/topic/greetings', function (greeting) {
+        stompClient.subscribe('/topic/greetings', function (message) {
             console.log("xd");
-            showGreeting(JSON.parse(greeting.body).content);
+            showGreeting(JSON.parse(message.body).content);
         });
     });
 }

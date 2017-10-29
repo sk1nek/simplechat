@@ -18,7 +18,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
+
         http
+                .headers()
+                .frameOptions().sameOrigin()
+                .and()
                 .authorizeRequests()
                 .antMatchers("/resources/**", "/register").permitAll()
                 .anyRequest().authenticated()
@@ -29,6 +33,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .logout()
                 .permitAll();
+
     }
 
 }

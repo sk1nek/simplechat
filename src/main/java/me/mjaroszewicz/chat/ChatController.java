@@ -72,6 +72,9 @@ public class ChatController {
 
         mdl.addAttribute("conversation", conversation);
         mdl.addAttribute("loggedUserId", loggedId); //helps with dividing messages
+        mdl.addAttribute("loggedUserName", loggedUserName);
+        mdl.addAttribute("targetId", targetId);
+        mdl.addAttribute("targetUserName", userRepo.findOne(targetId).getName());
         return "conversation";
     }
 
