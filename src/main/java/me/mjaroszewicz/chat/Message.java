@@ -11,7 +11,7 @@ public class Message implements Comparable<Message>{
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-    private LocalDateTime timestamp;
+    private Long timestamp;
 
     private long authorId;
 
@@ -21,11 +21,11 @@ public class Message implements Comparable<Message>{
 
     public Message() {}
 
-    public LocalDateTime getTimestamp() {
+    public Long getTimestamp() {
         return timestamp;
     }
 
-    public void setTimestamp(LocalDateTime timestamp) {
+    public void setTimestamp(Long timestamp) {
         this.timestamp = timestamp;
     }
 
@@ -69,5 +69,10 @@ public class Message implements Comparable<Message>{
     @Override
     public int compareTo(Message message) {
         return this.timestamp.compareTo(message.timestamp);
+    }
+
+    @Override
+    public String toString(){
+        return String.format("Message author %s recipient %s timestamp %d content %s", authorId, targetId, timestamp, content);
     }
 }

@@ -42,10 +42,6 @@ public class ChatController {
 
         User user = userRepo.findOneByName(username);
 
-        //passing conversations to model
-//        mdl.addAttribute("conversations", convos);
-
-
         return "conversations";
     }
 
@@ -73,7 +69,7 @@ public class ChatController {
         mdl.addAttribute("conversation", conversation);
         mdl.addAttribute("loggedUserId", loggedId); //helps with dividing messages
         mdl.addAttribute("loggedUserName", loggedUserName);
-        mdl.addAttribute("targetId", targetId);
+        mdl.addAttribute("targetUserId", targetId);
         mdl.addAttribute("targetUserName", userRepo.findOne(targetId).getName());
         return "conversation";
     }

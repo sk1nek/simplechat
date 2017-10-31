@@ -7,11 +7,14 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.handler.annotation.DestinationVariable;
 import org.springframework.messaging.handler.annotation.MessageMapping;
+import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
+
+import java.time.LocalDateTime;
 
 @Controller
 @EnableScheduling
@@ -43,14 +46,17 @@ public class WebSocketController {
 //
 //    }
 
-    @MessageMapping("/private.{username}")
+    @MessageMapping("/private")
     @SendTo("/topic/greetings")
-    public Message handlePrivateMessage(@DestinationVariable String username, Message msg) throws Exception {
+    public Message handlePrivateMessage(@Payload Message msg) throws Exception {
         log.info(msg.getContent());
-        log.warn(username);
-        Thread.sleep(200);
+        log.info("Saved message" + msg.toString());
         Message ret = new Message();
         ret.setContent(msg.getContent());
+        ret.setTimestamp(System.currentTimeMillis());
+        ret.setAuthorId((msg.getAuthorId()));
+        ret.setTargetId(msg.getTargetId());
+        msgRepo.save(ret);
 
         return ret;
     }

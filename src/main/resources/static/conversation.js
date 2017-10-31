@@ -1,7 +1,9 @@
 var stompClient = null;
 
-
-
+var currentUser;
+var targetUser;
+var currentUserId;
+var targetUserId;
 
 
 function getTargetUser(){
@@ -12,17 +14,20 @@ function getTargetUser(){
 
 var currentUrl = document.URL;
 
-window.onload = loadingSequence();
+$(document).ready(function (){
+    currentUser = $("#user").val();
+    targetUser = $("#targetuser").val();
+    currentUserId = $("#userid").val();
+    targetUserId = $("#targetuserid").val();
 
-var currentUser = $("#user").val();
-var targetUser = $("#targetuser").val();
 
-function loadingSequence(){
     console.log(currentUser);
     console.log(targetUser);
     loadModelVariables();
     connect();
-}
+})
+
+
 
 function loadModelVariables(){
 
@@ -32,7 +37,6 @@ function connect() {
     var socket = new SockJS('/spring-websocket');
     var headers = {};
     stompClient = Stomp.over(socket);
-    // headers[headerName] = token;
     console.log(headers);
 
     stompClient.connect(headers, function (frame) {
@@ -40,9 +44,11 @@ function connect() {
         stompClient.subscribe('/topic/greetings', function (message) {
             var obj = JSON.parse(message.body);
             var rightFlag = true;
-            if(obj.authorId !== currentUser){
+            if(obj.authorId != currentUserId){
                 rightFlag = false;
             }
+            console.log(obj.authorId, obj.targetId, rightFlag);
+            console.log(obj.authorId, currentUserId);
 
             showMessage(obj.content, rightFlag );
         });
@@ -51,8 +57,7 @@ function connect() {
 
 
 function sendName() {
-    // stompClient.send("/app/hello", {}, JSON.stringify({'name': $("#name").val()}));
-    stompClient.send("/chat/private/" , {}, JSON.stringify({'content': $("#msg").val()}));
+    stompClient.send("/chat/private" , {}, JSON.stringify({'content': $("#msg").val(), 'authorId':currentUserId, 'targetId':targetUserId}));
 }
 
 function showMessage(message, onRight) {

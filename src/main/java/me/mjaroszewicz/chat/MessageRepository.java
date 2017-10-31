@@ -3,6 +3,7 @@ package me.mjaroszewicz.chat;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
+import javax.annotation.PostConstruct;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,6 +19,7 @@ public interface MessageRepository extends CrudRepository<Message, Long> {
      * @return All messages sent by author to recipient
      */
     ArrayList<Message> findAllByAuthorIdAndTargetId(Long authorId, Long targetId);
+
     
 
 }

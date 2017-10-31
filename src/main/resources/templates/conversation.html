@@ -46,14 +46,13 @@
         </form>
 
     </table>
-    <!--<span class="hidden" id="user" th:text="${loggedUserName}"/>-->
-    <!--<span class="hidden" id="userid" th:text="${loggedUserId}"/>-->
-    <!--<span class="hidden" id="targetuser" th:text="${targetUserName}"/>-->
-    <form>
-        <input type="hidden" id="user" th:value="${loggedUserName}"/>
-        <input type="hidden" id="userid" th:value="${loggedUserId}"/>
-        <input type="hidden" id="targetuser" th:value="${targetUserName}"/>
-    </form>
+
+    <input type="hidden" id="user" th:value="${loggedUserName}"/>
+    <input type="hidden" id="userid" th:value="${loggedUserId}"/>
+    <input type="hidden" id="targetuser" th:value="${targetUserName}"/>
+    <input type="hidden" id="targetuserid" th:value="${targedUserId}"/>
+
+
 
 </div>
 </body>
