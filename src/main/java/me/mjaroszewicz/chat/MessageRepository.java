@@ -20,6 +20,8 @@ public interface MessageRepository extends CrudRepository<Message, Long> {
      */
     ArrayList<Message> findAllByAuthorIdAndTargetId(Long authorId, Long targetId);
 
+    ArrayList<Message> findByAuthorIdAndTargetId(Long authorId, Long targetId);
+
     
 
 }

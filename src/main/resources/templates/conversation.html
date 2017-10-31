@@ -15,17 +15,6 @@
 <div class="conversation">
     <table id="messages">
 
-        <tr>
-            <td class="message message-left">
-                left
-            </td>
-        </tr>
-        <tr>
-            <td class="message message-right">
-                right
-            </td>
-        </tr>
-
         <p th:if="${isEmpty} == 'true'" >You havent talked to that user yet ;(</p>
 
             <th:block th:if="${isEmpty} =='false'" th:each="message: ${conversation}">
@@ -50,7 +39,7 @@
     <input type="hidden" id="user" th:value="${loggedUserName}"/>
     <input type="hidden" id="userid" th:value="${loggedUserId}"/>
     <input type="hidden" id="targetuser" th:value="${targetUserName}"/>
-    <input type="hidden" id="targetuserid" th:value="${targedUserId}"/>
+    <input type="hidden" id="targetuserid" th:value="${targetUserId}"/>
 
 
 
