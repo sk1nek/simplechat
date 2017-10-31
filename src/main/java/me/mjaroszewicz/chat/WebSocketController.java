@@ -49,14 +49,14 @@ public class WebSocketController {
     @MessageMapping("/private")
     @SendTo("/topic/greetings")
     public Message handlePrivateMessage(@Payload Message msg) throws Exception {
-        log.info(msg.getContent());
-        log.info("Saved message" + msg.toString());
         Message ret = new Message();
         ret.setContent(msg.getContent());
         ret.setTimestamp(System.currentTimeMillis());
         ret.setAuthorId((msg.getAuthorId()));
         ret.setTargetId(msg.getTargetId());
         msgRepo.save(ret);
+
+        log.info("Saved message" + ret.toString());
 
         return ret;
     }

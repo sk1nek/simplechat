@@ -72,5 +72,10 @@ $(function () {
     $("form").on('submit', function (e) {
         e.preventDefault();
     });
-    $( "#send" ).click(function() { sendName(); });
+    $( "#send" ).click(function() {
+
+        sendName();
+        $("#msg").val('');});
+
+
 });
