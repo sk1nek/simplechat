@@ -26,19 +26,14 @@ public class ConversationRepository {
      * @return array of Message objects sorted by timestamps
      */
     public ArrayList<Message> getLatestMessages(Long author, Long recipient, int amount) {
-        //doc dis properly
-        log.warn(String.format("Probing for author %d and recipient %d", author, recipient));
         ArrayList<Message> query = msgRepo.findByAuthorIdAndTargetId(author, recipient);
         query.addAll(msgRepo.findAllByAuthorIdAndTargetId(recipient, author));
-        query.forEach(e -> System.out.println(e));
-        log.info("xd");
+
         ArrayList<Message> ret = new ArrayList<>();
         if(!query.isEmpty()){
             ret.addAll(query.subList(0, query.size() - 1));
             Collections.sort(ret);
         }
-
-        msgRepo.findAll().forEach(e -> log.error(e.toString()));
 
         return ret;
     }

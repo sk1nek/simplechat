@@ -15,7 +15,6 @@
 <div class="conversation">
     <table id="messages">
 
-        <p th:if="${isEmpty} == 'true'" >You havent talked to that user yet ;(</p>
 
             <th:block th:if="${isEmpty} =='false'" th:each="message: ${conversation}">
                 <tr>
@@ -26,15 +25,16 @@
                 </tr>
 
         </th:block>
-        <form class="form-inline">
-            <div class="form-group">
-                <label for="msg">What is your name?</label>
-                <input type="text" id="msg" class="form-control" placeholder="Your message here..."/>
-            </div>
-            <button id="send" class="btn btn-default" type="submit">Send</button>
-        </form>
+
 
     </table>
+    <form>
+        <p th:if="${isEmpty} == 'true'" >You havent talked to that user yet ;(</p>
+
+        <input type="text" id="msg" class="form-control" placeholder="Your message here..."/>
+
+        <button id="send" class="btn btn-default" type="submit">Send</button>
+    </form>
 
     <input type="hidden" id="user" th:value="${loggedUserName}"/>
     <input type="hidden" id="userid" th:value="${loggedUserId}"/>

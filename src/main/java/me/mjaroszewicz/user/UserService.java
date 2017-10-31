@@ -19,13 +19,13 @@ public class UserService {
     @Autowired
     private UserRepository userRepo;
 
-    Logger log = LoggerFactory.getLogger(UserService.class);
+    private static final Logger log = LoggerFactory.getLogger(UserService.class);
 
     /**
      *
      * @param form RegistrationForm object passed from register page
      */
-    public void registerUser(RegistrationForm form){
+    void registerUser(RegistrationForm form){
 
         if (isUniqueUsername(form.getName())) {
             User usr = new User();
@@ -37,7 +37,6 @@ public class UserService {
 
         }else{
             log.info("Could not create user named " + form.getName() + " - username taken");
-            return;
         }
 
     }
@@ -54,10 +53,7 @@ public class UserService {
      */
     private boolean isUniqueUsername(String username) {
 
-        if(userRepo.findOneByName(username) != null)
-            return false;
-        else
-            return true;
+        return userRepo.findOneByName(username) == null;
 
     }
 

@@ -5,15 +5,6 @@ var targetUser;
 var currentUserId;
 var targetUserId;
 
-
-function getTargetUser(){
-    var urlSplit = currentUrl.split("/");
-    urlSplit.pop();
-    return urlSplit[urlSplit.length - 1];
-}
-
-var currentUrl = document.URL;
-
 $(document).ready(function (){
     currentUser = $("#user").val();
     targetUser = $("#targetuser").val();
@@ -25,7 +16,7 @@ $(document).ready(function (){
     console.log(targetUser);
     loadModelVariables();
     connect();
-})
+});
 
 
 
