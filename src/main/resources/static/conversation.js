@@ -10,19 +10,10 @@ $(document).ready(function (){
     targetUser = $("#targetuser").val();
     currentUserId = $("#userid").val();
     targetUserId = $("#targetuserid").val();
-
-
-    console.log(currentUser);
-    console.log(targetUser);
-    loadModelVariables();
     connect();
 });
 
 
-
-function loadModelVariables(){
-
-}
 
 function connect() {
     var socket = new SockJS('/spring-websocket');

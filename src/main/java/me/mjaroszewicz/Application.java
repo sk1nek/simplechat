@@ -9,7 +9,6 @@ public class Application {
 
     //TODO - split js
     //TODO - add aesthetic 'send' functionality
-    //TODO - separate socket endpoints
     //TODO - css
 
     public static void main(String[] args){

@@ -30,6 +30,11 @@ public class ChatController {
     @Autowired
     ConversationRepository conRepo;
 
+    @GetMapping(value = {"","/"})
+    public String getLanding(){
+        return "redirect:/chat/";
+    }
+
     @GetMapping(value = {"/chat","/chat/"})
     public String getConversations(Model mdl){
 
@@ -42,7 +47,7 @@ public class ChatController {
         return "conversations";
     }
 
-    @GetMapping("/conversation/{user}/")
+    @GetMapping("/chat/{user}/")
     public String getConversationScreen(@PathVariable String user, Model mdl) {
 
         //identifying user

@@ -22,6 +22,8 @@ public interface MessageRepository extends CrudRepository<Message, Long> {
 
     ArrayList<Message> findByAuthorIdAndTargetId(Long authorId, Long targetId);
 
+    ArrayList<Message> findByAuthorIdOrTargetId(Long authorId, Long targetId);
+
     
 
 }

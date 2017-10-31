@@ -1,6 +1,7 @@
 package me.mjaroszewicz.user;
 
 import javax.persistence.*;
+import java.util.HashSet;
 
 @Entity
 @Table(name = "user")
@@ -13,6 +14,8 @@ public class User {
     private String name;
 
     private String password;
+
+    private HashSet<String> friendList;
 
     public User(){}
 
@@ -42,6 +45,15 @@ public class User {
     }
 
     public void setPassword(String password) {
+
         this.password = password;
+    }
+
+    public HashSet<String> getFriendList() {
+        return friendList;
+    }
+
+    public void setFriendList(HashSet<String> friendList) {
+        this.friendList = friendList;
     }
 }
