@@ -7,8 +7,10 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.Payload;
-import org.springframework.messaging.handler.annotation.SendTo;
+import org.springframework.messaging.simp.SimpMessagingTemplate;
+import org.springframework.messaging.simp.annotation.SendToUser;
 import org.springframework.scheduling.annotation.EnableScheduling;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Controller;
 
 @Controller
@@ -23,9 +25,17 @@ public class WebSocketController {
     @Autowired
     private MessageRepository msgRepo;
 
+    @Autowired
+    private SimpMessagingTemplate template;
+
+    @Autowired
+    public WebSocketController(SimpMessagingTemplate template){
+        this.template = template;
+    }
+
+
     @MessageMapping("/private")
-    @SendTo("/topic/greetings")
-    public Message handlePrivateMessage(@Payload Message msg) throws Exception {
+    public void handlePrivateMessage(@Payload Message msg) throws Exception {
         Message ret = new Message();
         ret.setContent(msg.getContent());
         ret.setTimestamp(System.currentTimeMillis());
@@ -35,11 +45,7 @@ public class WebSocketController {
 
         log.info("Saved message" + ret.toString());
 
-        return ret;
+        template.convertAndSendToUser(userRepo.findOne(msg.getTargetId()).getName(), "/private/incoming", msg);
     }
-
-
-
-
 
 }

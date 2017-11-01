@@ -21,6 +21,10 @@ public class Message implements Comparable<Message>{
 
     public Message() {}
 
+    public Message(String content){
+        this.content = content;
+    }
+
     public Long getTimestamp() {
         return timestamp;
     }

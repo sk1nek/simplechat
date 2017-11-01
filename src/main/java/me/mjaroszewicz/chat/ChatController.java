@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 
 @Controller
 public class ChatController {
@@ -43,6 +44,14 @@ public class ChatController {
         String username = auth.getName();
 
         User user = userRepo.findOneByName(username);
+
+        HashSet<String> hs = new HashSet<>();
+        hs.add("bar");
+        hs.add("friend2");
+        hs.add("friend3");
+        user.setFriendList(hs);
+
+        mdl.addAttribute("friends", user.getFriendList());
 
         return "conversations";
     }

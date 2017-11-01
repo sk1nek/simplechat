@@ -14,13 +14,15 @@ public class WebSocketConfig extends AbstractWebSocketMessageBrokerConfigurer{
 
     @Override
     public void configureMessageBroker(MessageBrokerRegistry config){
-        config.enableSimpleBroker("/topic");
-        config.setApplicationDestinationPrefixes("/chat");
+//        config.setApplicationDestinationPrefixes("/user");
+        config.enableSimpleBroker("/private", "/user");
+        config.setUserDestinationPrefix("/user");
+
+
     }
 
     @Override
     public void registerStompEndpoints(StompEndpointRegistry registry){
-//        registry.addEndpoint("/websocket");
         registry.addEndpoint("/spring-websocket").withSockJS();
     }
 }

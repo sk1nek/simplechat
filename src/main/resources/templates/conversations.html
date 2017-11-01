@@ -14,9 +14,9 @@
 <noscript><h2 style="color: #ff0000">Enable JavaScript, please ;) </h2></noscript>
 <div id="chat-window">
     <table>
-        <th:block th:each="conversation : ${conversations}">
+        <th:block th:each="friend : ${friends}">
             <tr>
-                <td th:text="${conversation.getLastMessage()}"></td>
+                <td th:text="${friend}"></td>
             </tr>
         </th:block>
     </table>

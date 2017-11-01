@@ -23,7 +23,7 @@ function connect() {
 
     stompClient.connect(headers, function (frame) {
         console.log('Connected: ' + frame);
-        stompClient.subscribe('/topic/greetings', function (message) {
+        stompClient.subscribe('/user/private/incoming', function (message) {
             var obj = JSON.parse(message.body);
             var rightFlag = true;
             if(obj.authorId != currentUserId){
@@ -39,7 +39,8 @@ function connect() {
 
 
 function sendName() {
-    stompClient.send("/chat/private" , {}, JSON.stringify({'content': $("#msg").val(), 'authorId':currentUserId, 'targetId':targetUserId}));
+    showMessage($('#msg').val(), true);
+    stompClient.send("/private" , {}, JSON.stringify({'content': $("#msg").val(), 'authorId':currentUserId, 'targetId':targetUserId}));
 }
 
 function showMessage(message, onRight) {
