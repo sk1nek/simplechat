@@ -16,7 +16,8 @@
     <table>
         <th:block th:each="friend : ${friends}">
             <tr>
-                <td th:text="${friend}"></td>
+                <td><a th:text="${friend}" th:href="@{'/chat/' + ${friend} + '/' }"/>
+                </td>
             </tr>
         </th:block>
     </table>

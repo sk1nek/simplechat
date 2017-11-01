@@ -34,16 +34,16 @@ public class WebSocketController {
     }
 
 
+    /**
+     * This method redirects message to individual user socket
+     */
     @MessageMapping("/private")
     public void handlePrivateMessage(@Payload Message msg) throws Exception {
-        Message ret = new Message();
-        ret.setContent(msg.getContent());
-        ret.setTimestamp(System.currentTimeMillis());
-        ret.setAuthorId((msg.getAuthorId()));
-        ret.setTargetId(msg.getTargetId());
-        msgRepo.save(ret);
 
-        log.info("Saved message" + ret.toString());
+        msg.setTimestamp(System.currentTimeMillis());
+        msgRepo.save(msg);
+
+        log.info("Handling msg:" + msg.toString());
 
         template.convertAndSendToUser(userRepo.findOne(msg.getTargetId()).getName(), "/private/incoming", msg);
     }
