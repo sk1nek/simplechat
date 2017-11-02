@@ -6,11 +6,28 @@ var currentUserId;
 var targetUserId;
 
 $(document).ready(function (){
+
     currentUser = $("#user").val();
     targetUser = $("#targetuser").val();
     currentUserId = $("#userid").val();
     targetUserId = $("#targetuserid").val();
     connect();
+
+    $('#message-input-box').keypress( function (e) {
+        console.log("rofl");
+        if (e.which == '13') {
+            console.log('entr');
+            $(this).attr("disabled", "disabled");
+            sendName();
+            $(this).val('');
+
+            $(this).removeAttr("disabled");
+        }
+    });
+
+
+
+
 });
 
 
@@ -39,26 +56,42 @@ function connect() {
 
 
 function sendName() {
-    showMessage($('#msg').val(), true);
-    stompClient.send("/private" , {}, JSON.stringify({'content': $("#msg").val(), 'authorId':currentUserId, 'targetId':targetUserId}));
+    if($('#message-input-box').val() === ''){
+        return;
+    }
+    showMessage($('#message-input-box').val(), true);
+    stompClient.send("/private" , {}, JSON.stringify({'content': $("#message-input-box").val(), 'authorId':currentUserId, 'targetId':targetUserId}));
 }
 
 function showMessage(message, onRight) {
     if(onRight === false){
-        $("#messages").append("<tr><td class='message message-left'>" + message + "</td></tr>");
+        $("#chat").append("<tr><td class='message message-left'>" + message + "</td></tr>");
     }else{
-        $("#messages").append("<tr><td class='message message-right'>" + message + "</td></tr>");
+        $("#chat").append("<tr><td class='message message-right'>" + message + "</td></tr>");
     }
 }
 
-$(function () {
-    $("form").on('submit', function (e) {
-        e.preventDefault();
-    });
-    $( "#send" ).click(function() {
+// $(function () {
+//     $("form").on('submit', function (e) {
+//         e.preventDefault();
+//     });
+//     $( "#send" ).click(function() {
+//
+//         sendName();
+//         $("#msg").val('');});
+//
+//
+// });
 
-        sendName();
-        $("#msg").val('');});
+// $('#msg').onkeydown= function (e) {
+//
+//     if(e.keyCode == 13){
+//         sendName();
+//         $('#msg').val('');
+//     }
+// }
+
+var e = jQuery.Event("keydown");
 
 
-});
+

@@ -55,17 +55,7 @@ public class RegistrationController extends WebMvcConfigurerAdapter {
         return "redirect:/";
     }
 
-//    @GetMapping("/login")
-//    public String login(Model mdl, String err, String logout){
-//
-//        if(err != null)
-//            mdl.addAttribute("error", "Your login credentials are invalid");
-//
-//        if(logout != null)
-//            mdl.addAttribute("message", "You have been logged out successfully");
-//
-//        return "login";
-//    }
+
 
     @GetMapping("/login")
     public String getLoginPage(LoginForm loginForm){

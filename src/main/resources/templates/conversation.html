@@ -13,7 +13,10 @@
 <body>
 <noscript><h2 style="color: #ff0000">Enable JavaScript, please ;) </h2></noscript>
 <div class="conversation">
-    <table id="messages">
+    <div class="menu">
+        <div class="name" th:text="${targetUserName}"/>
+    </div>
+    <table class="chat" id="chat">
 
 
             <th:block th:if="${isEmpty} =='false'" th:each="message: ${conversation}">
@@ -28,13 +31,13 @@
 
 
     </table>
-    <form>
-        <p th:if="${isEmpty} == 'true'" >You havent talked to that user yet ;(</p>
+    <!--<form id="message-window">-->
+        <!--<p th:if="${isEmpty} == 'true'" >You havent talked to that user yet ;(</p>-->
 
-        <input type="text" id="msg" class="form-control" placeholder="Your message here..."/>
+        <input type="text" id="message-input-box" class="textarea" placeholder="Your message here..."/>
 
-        <button id="send" class="btn btn-default" type="submit">Send</button>
-    </form>
+        <!--<button id="send" class="btn btn-default" type="submit">Send</button>-->
+    <!--</form>-->
 
     <input type="hidden" id="user" th:value="${loggedUserName}"/>
     <input type="hidden" id="userid" th:value="${loggedUserId}"/>
