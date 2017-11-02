@@ -44,16 +44,20 @@ public class ConversationRepository {
         ArrayList<Message> results = msgRepo.findByAuthorIdAndTargetId(author, recipient);
         results.addAll(msgRepo.findAllByAuthorIdAndTargetId(recipient, author));
 
-        ArrayList<Message> ret = new ArrayList<>();
-        if(!results.isEmpty() && results.size() < amount){
-            ret.addAll(results);
-        }else if(!results.isEmpty() && results.size() >= amount){
-            ret.addAll(results.subList(results.size() - 1 - amount, results.size() - 1));
+        log.error(" Count : " + results.size());
+        log.error("Amount: " + amount);
+
+        if(results.size() == 0 || results.size() < amount) {
+            log.info("Returning results");
+            return results;
+        }
+        else {
+            log.info(String.format("Size %d amount %d", results.size(), amount));
+            ArrayList<Message> ret = new ArrayList<>(30);
+            ret.addAll(results.subList(results.size() - amount, results.size() - 1));
+            return ret;
         }
 
-        Collections.sort(ret);
-
-        return ret;
     }
 
 

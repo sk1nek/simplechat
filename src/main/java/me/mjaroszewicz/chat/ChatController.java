@@ -22,8 +22,7 @@ public class ChatController {
 
     private final static Logger log = LoggerFactory.getLogger(ChatController.class);
 
-    @Value("${chat.default.message.amount")
-    private static int DEFAULT_MSG_AMOUNT;
+    private static int DEFAULT_MSG_AMOUNT = 30;
 
     @Autowired
     UserRepository userRepo;
@@ -70,7 +69,10 @@ public class ChatController {
         //logged usr
         Long loggedId = userRepo.findOneByName(loggedUserName).getUserId();
 
-        ArrayList<Message> conversation = conRepo.getLatestMessages(loggedId, targetId, DEFAULT_MSG_AMOUNT);
+
+        ArrayList<Message> conversation = new ArrayList<>(30);
+        conversation.addAll(conRepo.getLatestMessages(loggedId, targetId, DEFAULT_MSG_AMOUNT));
+
 
         if(conversation.isEmpty())
             mdl.addAttribute("isEmpty", "true");
