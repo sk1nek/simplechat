@@ -56,12 +56,17 @@ public class ChatController {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String loggedUserName = auth.getName();
 
-        log.info(user);
+        //logged usr
+        User current = userRepo.findOneByName(loggedUserName);
+        Long loggedId = current.getUserId();
 
         //target user
-        Long targetId = userRepo.findOneByName(user).getUserId();
-        //logged usr
-        Long loggedId = userRepo.findOneByName(loggedUserName).getUserId();
+        User target = userRepo.findOneByName(user);
+        //nullpointer-proofing
+        if(target == null || target==current)
+            return "redirect:/";
+        Long targetId = target.getUserId();
+
 
 
         ArrayList<Message> conversation = new ArrayList<>(30);
