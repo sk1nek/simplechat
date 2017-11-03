@@ -15,7 +15,7 @@ public class User {
 
     private String password;
 
-    private HashSet<String> friendList;
+    private HashSet<String> friendList = new HashSet<>();
 
     public User(){}
 
@@ -55,5 +55,14 @@ public class User {
 
     public void setFriendList(HashSet<String> friendList) {
         this.friendList = friendList;
+    }
+
+    public void addFriend(String friendName){
+        friendList.add(friendName);
+    }
+
+    @Override
+    public String toString() {
+        return String.format("User id: %d name: %s", userId, name);
     }
 }

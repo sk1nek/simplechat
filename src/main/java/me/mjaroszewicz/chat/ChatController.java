@@ -43,11 +43,6 @@ public class ChatController {
 
         User user = userRepo.findOneByName(username);
 
-        HashSet<String> hs = new HashSet<>();
-        hs.add("bar");
-        hs.add("friend2");
-        hs.add("friend3");
-        user.setFriendList(hs);
 
         mdl.addAttribute("friends", user.getFriendList());
 

@@ -14,7 +14,6 @@ $(document).ready(function (){
     connect();
 
     $('#message-input-box').keypress( function (e) {
-        console.log("rofl");
         if (e.which == '13') {
             console.log('entr');
             $(this).attr("disabled", "disabled");
@@ -54,6 +53,7 @@ function sendName() {
     }
     showMessage($('#message-input-box').val(), true);
     stompClient.send("/private" , {}, JSON.stringify({'content': $("#message-input-box").val(), 'authorId':currentUserId, 'targetId':targetUserId}));
+    stompClient.send("/addFriend", {}, "testmikrofonu");
 }
 
 function showMessage(message, onRight) {
