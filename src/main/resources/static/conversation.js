@@ -20,17 +20,10 @@ $(document).ready(function (){
             $(this).attr("disabled", "disabled");
             sendName();
             $(this).val('');
-
             $(this).removeAttr("disabled");
         }
     });
-
-
-
-
 });
-
-
 
 function connect() {
     var socket = new SockJS('/spring-websocket');

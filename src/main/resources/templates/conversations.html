@@ -3,20 +3,18 @@
 <head>
     <meta charset="UTF-8"/>
     <title>Lel lol</title>
-    <link href="/webjars/bootstrap/css/boostrap.min.css" rel="stylesheet"/>
-    <link href="/static/css/style.css" rel="stylesheet" type="text/css"/>
-    <script src="/webjars/jquery/jquery.min.js"></script>
-    <script src="/webjars/sockjs-client/sockjs.min.js"></script>
-    <script src="/webjars/stomp-websocket/stomp.min.js"></script>
-    <script src="/app.js"></script>
+    <link href="/css/friends.css" rel="stylesheet" type="text/css"/>
+    <script src="/friendlist.js"></script>
 </head>
 <body>
 <noscript><h2 style="color: #ff0000">Enable JavaScript, please ;) </h2></noscript>
-<div id="chat-window">
+<div class="friendlist-container">
+    <h1>Your contacts</h1>
     <table>
         <th:block th:each="friend : ${friends}">
             <tr>
-                <td><a th:text="${friend}" th:href="@{'/chat/' + ${friend} + '/' }"/>
+                <td><a class="nice-button" th:text="${friend}" th:href="@{'/chat/' + ${friend} + '/' }"/>
+
                 </td>
             </tr>
         </th:block>
