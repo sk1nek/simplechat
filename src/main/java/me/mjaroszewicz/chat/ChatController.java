@@ -54,7 +54,7 @@ public class ChatController {
         return "conversations";
     }
 
-    @GetMapping("/chat/{user}/")
+    @GetMapping(value = {"/chat/{user}", "/chat/{user}/"})
     public String getConversationScreen(@PathVariable String user, Model mdl) {
 
         //identifying user
