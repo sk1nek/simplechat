@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8"/>
-    <title>Title</title>
+    <title>Login page</title>
     <link href="/css/login.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
@@ -10,11 +10,13 @@
 
 
 <form method="post" action="#" th:action="@{/login}" th:object="${loginForm}">
+    <h1>Login</h1>
     <input type="text" th:field="*{username}" placeholder="username"/>
     <p th:if="${#fields.hasErrors('username')}" th:errors="*{username}">Name Error</p>
     <input type="password" th:field="*{password}" placeholder="pass..."/>
     <p th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Pwd error</p>
     <input type="submit" value="submit"/>
+    <a th:href="@{/register}"> Register </a>
 </form>
 
 </div>

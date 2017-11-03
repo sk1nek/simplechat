@@ -4,7 +4,7 @@ body{
     padding-top: 100px;
 }
 
-.login-container {
+.register-container {
     padding: 30px;
     max-width: 350px;
     width: 100% !important;
@@ -16,14 +16,14 @@ body{
     font-family: roboto, serif;
 }
 
-.login-container h1{
+.register-container h1{
     text-align: center;
     font-size: 1.8em;
     font-family: roboto;
 }
 
 
-.login-container input[type=submit]{
+.register-container input[type=submit]{
     width: 100%;
     display: block;
     margin-bottom: 10px;
@@ -37,7 +37,7 @@ body{
     font-size: 14px;
 }
 
-.login-container input[type=text], input[type=password] {
+.register-container input[type=text], input[type=password] {
     height: 44px;
     font-size: 16px;
     width: 100%;
@@ -55,7 +55,7 @@ body{
     padding: 0 8px;
 }
 
-.login-container a{
+.register-container a{
     text-decoration: none;
     color: #666;
     font-weight: 400;
