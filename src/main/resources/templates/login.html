@@ -3,8 +3,12 @@
 <head>
     <meta charset="UTF-8"/>
     <title>Title</title>
+    <link href="/css/login.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
+<div class="login-container">
+
+
 <form method="post" action="#" th:action="@{/login}" th:object="${loginForm}">
     <input type="text" th:field="*{username}" placeholder="username"/>
     <p th:if="${#fields.hasErrors('username')}" th:errors="*{username}">Name Error</p>
@@ -13,5 +17,6 @@
     <input type="submit" value="submit"/>
 </form>
 
+</div>
 </body>
 </html>
