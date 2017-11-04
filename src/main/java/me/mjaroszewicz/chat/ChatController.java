@@ -1,6 +1,5 @@
 package me.mjaroszewicz.chat;
 
-
 import me.mjaroszewicz.user.User;
 import me.mjaroszewicz.user.UserRepository;
 import org.slf4j.Logger;
@@ -14,7 +13,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 
 @Controller
 public class ChatController {
@@ -67,11 +65,8 @@ public class ChatController {
             return "redirect:/";
         Long targetId = target.getUserId();
 
-
-
         ArrayList<Message> conversation = new ArrayList<>(30);
         conversation.addAll(conRepo.getLatestMessages(loggedId, targetId, DEFAULT_MSG_AMOUNT));
-
 
         if(conversation.isEmpty())
             mdl.addAttribute("isEmpty", "true");

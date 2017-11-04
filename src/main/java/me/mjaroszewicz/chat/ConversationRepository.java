@@ -14,6 +14,9 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.LinkedList;
 
+/**
+ * The main purpose of this component is merging database queries to the form of sorted message array
+ */
 @Repository
 public class ConversationRepository {
 
@@ -43,9 +46,6 @@ public class ConversationRepository {
     public ArrayList<Message> getLatestMessages(Long author, Long recipient, int amount) {
         ArrayList<Message> results = msgRepo.findByAuthorIdAndTargetId(author, recipient);
         results.addAll(msgRepo.findAllByAuthorIdAndTargetId(recipient, author));
-
-        log.error(" Count : " + results.size());
-        log.error("Amount: " + amount);
 
         if(results.size() == 0 || results.size() < amount) {
             log.info("Returning results");

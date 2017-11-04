@@ -13,6 +13,9 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Controller;
 
+/**
+ * Component handling messages sent by user
+ */
 @Controller
 @EnableScheduling
 public class WebSocketController {
@@ -42,8 +45,6 @@ public class WebSocketController {
 
         msg.setTimestamp(System.currentTimeMillis());
         msgRepo.save(msg);
-
-        log.info("Handling msg:" + msg.toString());
 
         template.convertAndSendToUser(userRepo.findOne(msg.getTargetId()).getName(), "/private/incoming", msg);
     }

@@ -36,9 +36,7 @@ public class FriendListManagerController {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         User usr = userRepo.findOneByName(auth.getName());
 
-        log.error(friendname);
-
-        if(userRepo.findOneByName(friendname) != null){
+        if(userRepo.findOneByName(friendname) != null && !friendname.equals(usr.getName())){
             usr.addFriend(friendname);
             simpMessagingTemplate.convertAndSendToUser(usr.getName(), "/friendFeedback", new FriendFeedback(friendname, true));
             userRepo.save(usr);

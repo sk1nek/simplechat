@@ -41,6 +41,13 @@ table{
     line-height: 60px;
 }
 
+.friendlist-container input[type=text]{
+    width: 100%;
+    box-sizing: border-box;
+    border-radius: 0;
+
+}
+
 a{
     text-decoration: none;
 }

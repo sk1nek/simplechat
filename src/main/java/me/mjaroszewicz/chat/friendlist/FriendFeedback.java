@@ -1,5 +1,8 @@
 package me.mjaroszewicz.chat.friendlist;
 
+/**
+ * DTO simplifying friendlist management
+ */
 public class FriendFeedback {
 
     private boolean success;

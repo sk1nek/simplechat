@@ -4,6 +4,7 @@ import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.Date;
 
+
 @Entity
 public class Message implements Comparable<Message>{
 

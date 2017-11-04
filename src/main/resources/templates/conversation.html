@@ -3,7 +3,6 @@
 <head>
     <meta charset="UTF-8"/>
     <title>Lel lol</title>
-    <link href="/webjars/bootstrap/css/boostrap.min.css" rel="stylesheet"/>
     <link href="/css/style.css" rel="stylesheet" type="text/css"/>
     <script src="/webjars/jquery/jquery.min.js"></script>
     <script src="/webjars/sockjs-client/sockjs.min.js"></script>
@@ -18,7 +17,6 @@
     </div>
     <table class="chat" id="chat">
 
-
             <th:block th:if="${isEmpty} =='false'" th:each="message: ${conversation}">
                 <tr>
                     <th:block th:switch="${message.authorId} == ${loggedUserId}">
@@ -31,13 +29,7 @@
 
 
     </table>
-    <!--<form id="message-window">-->
-        <!--<p th:if="${isEmpty} == 'true'" >You havent talked to that user yet ;(</p>-->
-
         <input type="text" id="message-input-box" class="textarea" placeholder="Your message here..."/>
-
-        <!--<button id="send" class="btn btn-default" type="submit">Send</button>-->
-    <!--</form>-->
 
     <input type="hidden" id="user" th:value="${loggedUserName}"/>
     <input type="hidden" id="userid" th:value="${loggedUserId}"/>

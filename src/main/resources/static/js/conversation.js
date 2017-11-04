@@ -53,7 +53,6 @@ function sendName() {
     }
     showMessage($('#message-input-box').val(), true);
     stompClient.send("/private" , {}, JSON.stringify({'content': $("#message-input-box").val(), 'authorId':currentUserId, 'targetId':targetUserId}));
-    stompClient.send("/addFriend", {}, "testmikrofonu");
 }
 
 function showMessage(message, onRight) {
