@@ -48,7 +48,6 @@ public class ConversationRepository {
         results.addAll(msgRepo.findAllByAuthorIdAndTargetId(recipient, author));
 
         if(results.size() == 0 || results.size() < amount) {
-            log.info("Returning results");
             return results;
         }
         else {

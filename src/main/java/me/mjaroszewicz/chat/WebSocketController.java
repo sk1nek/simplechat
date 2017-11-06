@@ -38,12 +38,14 @@ public class WebSocketController {
 
 
     /**
-     * This method redirects message to individual user socket
+     * This method redirects message to individual user socket. Messages longer than 255 chars are trimmed to this size.
      */
     @MessageMapping("/private")
     public void handlePrivateMessage(@Payload Message msg) throws Exception {
 
         msg.setTimestamp(System.currentTimeMillis());
+        if(msg.getContent().length() > 255)
+            msg.setContent(msg.getContent().substring(0, 254));
         msgRepo.save(msg);
 
         template.convertAndSendToUser(userRepo.findOne(msg.getTargetId()).getName(), "/private/incoming", msg);

@@ -16,6 +16,7 @@
         <div class="name" th:text="${targetUserName}"/>
     </div>
     <table class="chat" id="chat">
+        <tbody id="tbody">
 
             <th:block th:if="${isEmpty} =='false'" th:each="message: ${conversation}">
                 <tr>
@@ -27,9 +28,10 @@
 
         </th:block>
 
+        </tbody>
 
     </table>
-        <input type="text" id="message-input-box" class="textarea" placeholder="Your message here..."/>
+        <input type="text" id="message-input-box" maxlength="255" class="textarea" placeholder="Your message here..."/>
 
     <input type="hidden" id="user" th:value="${loggedUserName}"/>
     <input type="hidden" id="userid" th:value="${loggedUserId}"/>

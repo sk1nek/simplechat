@@ -15,14 +15,22 @@ $(document).ready(function (){
 
     $('#message-input-box').keypress( function (e) {
         if (e.which == '13') {
-            console.log('entr');
             $(this).attr("disabled", "disabled");
             sendName();
             $(this).val('');
             $(this).removeAttr("disabled");
         }
     });
+
 });
+
+function scrollDown(){
+
+    var sc = $('#chat').get(0).scrollHeight;
+
+    $('#tbody').get(0).scrollTop = sc;
+
+}
 
 function connect() {
     var socket = new SockJS('/spring-websocket');
@@ -51,6 +59,10 @@ function sendName() {
     if($('#message-input-box').val() === ''){
         return;
     }
+
+    scrollDown();
+
+
     showMessage($('#message-input-box').val(), true);
     stompClient.send("/private" , {}, JSON.stringify({'content': $("#message-input-box").val(), 'authorId':currentUserId, 'targetId':targetUserId}));
 }
@@ -61,29 +73,8 @@ function showMessage(message, onRight) {
     }else{
         $("#chat").append("<tr><td class='message message-right'>" + message + "</td></tr>");
     }
+
 }
-
-// $(function () {
-//     $("form").on('submit', function (e) {
-//         e.preventDefault();
-//     });
-//     $( "#send" ).click(function() {
-//
-//         sendName();
-//         $("#msg").val('');});
-//
-//
-// });
-
-// $('#msg').onkeydown= function (e) {
-//
-//     if(e.keyCode == 13){
-//         sendName();
-//         $('#msg').val('');
-//     }
-// }
-
-var e = jQuery.Event("keydown");
 
 
 
