@@ -42,7 +42,9 @@ public class FriendListManagerController {
 
         User usr = getLoggedUser();
 
-        if(userRepo.findOneByName(friendname) != null && !friendname.equals(usr.getName())){
+        if(usr.getFriendList().contains(friendname))
+            sendFeedback(new FriendOperationFeedback(friendname, false, "add"));
+        else if(userRepo.findOneByName(friendname) != null && !friendname.equals(usr.getName())){
             usr.addFriend(friendname);
             userRepo.save(usr);
             sendFeedback(new FriendOperationFeedback(friendname, true, "add"));
