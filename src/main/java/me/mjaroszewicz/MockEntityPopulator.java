@@ -11,6 +11,9 @@ import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
 
+/**
+ * Used for testing purposes. Automatically adds mock entities.
+ */
 @Component
 @DependsOn("userRepo")
 public class MockEntityPopulator {
@@ -19,7 +22,6 @@ public class MockEntityPopulator {
     UserRepository userRepo;
 
     Logger log = LoggerFactory.getLogger(MockEntityPopulator.class);
-
 
     @PostConstruct
     private void addMockUsers() {

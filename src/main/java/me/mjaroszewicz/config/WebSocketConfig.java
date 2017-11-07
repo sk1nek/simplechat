@@ -14,7 +14,6 @@ public class WebSocketConfig extends AbstractWebSocketMessageBrokerConfigurer{
 
     @Override
     public void configureMessageBroker(MessageBrokerRegistry config){
-//        config.setApplicationDestinationPrefixes("/user");
         config.enableSimpleBroker("/private", "/user", "/friendFeedback");
         config.setUserDestinationPrefix("/user");
 

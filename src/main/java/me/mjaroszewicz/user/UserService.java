@@ -41,10 +41,6 @@ public class UserService {
 
     }
 
-    public User findByUsername(String username){
-        return userRepo.findOneByName(username);
-    }
-
     /**
      * Function that checks if username exists in database
      *

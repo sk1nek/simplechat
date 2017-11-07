@@ -5,7 +5,7 @@ import javax.validation.constraints.Size;
 
 
 /**
- * User registration DTO
+ * User registration form DTO
  */
 public class RegistrationForm {
 

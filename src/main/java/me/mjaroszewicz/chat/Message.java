@@ -76,6 +76,10 @@ public class Message implements Comparable<Message>{
         return this.timestamp.compareTo(message.timestamp);
     }
 
+    /**
+     *
+     * @return String representation of Message class instance
+     */
     @Override
     public String toString(){
         return String.format("Message author %s recipient %s timestamp %d content %s", authorId, targetId, timestamp, content);

@@ -41,7 +41,6 @@ public class ChatController {
 
         User user = userRepo.findOneByName(username);
 
-
         mdl.addAttribute("friends", user.getFriendList());
 
         return "conversations";

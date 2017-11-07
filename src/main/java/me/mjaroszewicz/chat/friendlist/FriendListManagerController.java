@@ -30,6 +30,13 @@ public class FriendListManagerController {
     }
 
 
+    /**
+     *
+     * Method that handles adding of friends. Sends instance of FriendFeedback class back to the user.
+     * If username is not found inside repository, 'success' flag is set to false.
+     *
+     * @param friendname - username of friend to be added
+     */
     @MessageMapping("/addFriend")
     public void handleFriendAddRequest(@Payload String friendname){
 
