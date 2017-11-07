@@ -32,7 +32,7 @@ public class FriendListManagerController {
 
     /**
      *
-     * Method that handles adding of friends. Sends instance of FriendFeedback class back to the user.
+     * Method that handles adding of friends. Sends instance of FriendOperationFeedback class back to the user.
      * If username is not found inside repository, 'success' flag is set to false.
      *
      * @param friendname - username of friend to be added
@@ -40,17 +40,46 @@ public class FriendListManagerController {
     @MessageMapping("/addFriend")
     public void handleFriendAddRequest(@Payload String friendname){
 
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        User usr = userRepo.findOneByName(auth.getName());
+        User usr = getLoggedUser();
 
         if(userRepo.findOneByName(friendname) != null && !friendname.equals(usr.getName())){
             usr.addFriend(friendname);
-            simpMessagingTemplate.convertAndSendToUser(usr.getName(), "/friendFeedback", new FriendFeedback(friendname, true));
             userRepo.save(usr);
-        }else{
-            simpMessagingTemplate.convertAndSendToUser(usr.getName(), "/friendFeedback", new FriendFeedback(friendname, false));
-        }
+            sendFeedback(new FriendOperationFeedback(friendname, true, "add"));
+        }else
+            sendFeedback(new FriendOperationFeedback(friendname, false, "add"));
 
+    }
+
+    /**
+     *
+     * Method handling friend removal requests. Sends FriendOperationFeedback to user.
+     *
+     * @param friendname - username of friend to be removed
+     */
+    @MessageMapping("/removeFriend")
+    public void handleRemoveFriend(@Payload String friendname){
+
+        User usr = getLoggedUser();
+        boolean successFlag = false;
+
+        if(!friendname.isEmpty()){
+            successFlag = usr.removeFriend(friendname);
+            userRepo.save(usr);
+            sendFeedback(new FriendOperationFeedback(friendname, successFlag, "remove"));
+        }else
+            sendFeedback(new FriendOperationFeedback(friendname, successFlag, "remove"));
+
+
+    }
+
+    private User getLoggedUser(){
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        return userRepo.findOneByName(auth.getName());
+    }
+
+    private void sendFeedback(FriendOperationFeedback fof){
+        simpMessagingTemplate.convertAndSendToUser(getLoggedUser().getName(), "/friendFeedback", fof);
     }
 
 

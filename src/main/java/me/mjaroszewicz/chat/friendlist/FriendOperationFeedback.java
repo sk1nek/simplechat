@@ -1,13 +1,15 @@
 package me.mjaroszewicz.chat.friendlist;
 
 /**
- * DTO simplifying friendlist management
+ * Object sent to user after handling requested user operation.
  */
-public class FriendFeedback {
+public class FriendOperationFeedback {
 
     private boolean success;
 
     private String friendName;
+
+    private String type;
 
     public boolean isSuccess() {
         return success;
@@ -25,10 +27,19 @@ public class FriendFeedback {
         this.friendName = friendName;
     }
 
-    public FriendFeedback(){}
+    public String getType() {
+        return type;
+    }
 
-    public FriendFeedback(String name, boolean success){
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public FriendOperationFeedback(){}
+
+    public FriendOperationFeedback(String name, boolean success, String type){
         this.friendName = name;
         this.success = success;
+        this.type = type;
     }
 }

@@ -61,6 +61,15 @@ public class User {
         friendList.add(friendName);
     }
 
+    /**
+     *
+     * @param friendName - name of friend to be removed
+     * @return true if removal was a success
+     */
+    public boolean removeFriend(String friendName){
+        return friendList.remove(friendName);
+    }
+
     @Override
     public String toString() {
         return String.format("User id: %d name: %s", userId, name);
