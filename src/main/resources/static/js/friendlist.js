@@ -13,7 +13,10 @@ $(document).ready(function () {
         }
 
     })
+
+    setContextMenuAction();
 });
+
 
 function connect() {
     var socket = new SockJS('/spring-websocket');
@@ -25,7 +28,7 @@ function connect() {
         console.log('Connected: ' + frame);
         stompClient.subscribe('/user/friendFeedback', function (feedback) {
             var obj = JSON.parse(feedback.body);
-            if(obj.success){
+            if(obj.success && obj.type=="add"){
                 showNewFriend(obj.friendName);
             }
         });
@@ -35,8 +38,16 @@ function connect() {
 
 function showNewFriend(name) {
 
-    var currentLocation = $('#location').attr('href');
-
     $('#friendlist-table').append('<tr><td><a class="nice-button" href=\"'+  name + '\">'+name+'</a> </td></tr>');
+
+    setContextMenuAction();
 }
 
+function setContextMenuAction(){
+    $('.nice-button').contextmenu(function (e) {
+
+        stompClient.send("/removeFriend", {}, this.text);
+        e.preventDefault();
+        this.remove();
+    });
+}
