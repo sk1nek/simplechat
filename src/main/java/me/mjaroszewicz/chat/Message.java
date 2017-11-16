@@ -5,6 +5,7 @@ import java.time.LocalDateTime;
 import java.util.Date;
 
 
+@SuppressWarnings("unused")
 @Entity
 public class Message implements Comparable<Message>{
 

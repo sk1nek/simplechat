@@ -11,7 +11,7 @@ body{
     background-color: #F7F7F7;
     margin: 0 auto;
     border-radius: 2px;
-    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 2px 2px rgba(0, 0, 0, 0.3);
     overflow: hidden;
     font-family: roboto, serif;
 }
@@ -28,11 +28,11 @@ body{
     display: block;
     margin-bottom: 10px;
     position: relative;
-    border: 0px;
+    border: 0;
     color: #fff;
     text-shadow: 0 1px rgba(0,0,0, 0.1);
     background-color: #4d90fe;
-    padding: 17px 0px;
+    padding: 17px 0;
     font-family: roboto;
     font-size: 14px;
 }

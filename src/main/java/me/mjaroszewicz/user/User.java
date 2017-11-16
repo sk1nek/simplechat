@@ -28,6 +28,7 @@ public class User {
         return userId;
     }
 
+    @SuppressWarnings("unused")
     public void setUserId(long userId) {
         this.userId = userId;
     }
@@ -53,6 +54,7 @@ public class User {
         return friendList;
     }
 
+    @SuppressWarnings("unused")
     public void setFriendList(HashSet<String> friendList) {
         this.friendList = friendList;
     }

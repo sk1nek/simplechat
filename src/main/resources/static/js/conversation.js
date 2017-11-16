@@ -14,6 +14,7 @@ $(document).ready(function (){
     connect();
 
     $('#message-input-box').keypress( function (e) {
+        // noinspection EqualityComparisonWithCoercionJS
         if (e.which == '13') {
             $(this).attr("disabled", "disabled");
             sendName();
@@ -43,6 +44,7 @@ function connect() {
         stompClient.subscribe('/user/private/incoming', function (message) {
             var obj = JSON.parse(message.body);
             var rightFlag = true;
+            // noinspection EqualityComparisonWithCoercionJS
             if(obj.authorId != currentUserId){
                 rightFlag = false;
             }

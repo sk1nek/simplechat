@@ -13,6 +13,9 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 
+/**
+ * Component that handles incoming friend operation requests and provides user with response objects
+ */
 @Controller
 public class FriendListManagerController {
 
@@ -70,6 +73,7 @@ public class FriendListManagerController {
             userRepo.save(usr);
             sendFeedback(new FriendOperationFeedback(friendname, successFlag, "remove"));
         }else
+            //noinspection ConstantConditions
             sendFeedback(new FriendOperationFeedback(friendname, successFlag, "remove"));
 
 

@@ -1,7 +1,7 @@
 package me.mjaroszewicz.chat.friendlist;
 
 /**
- * Object sent to user after handling requested user operation.
+ * Response object sent to user after handling requested user operation.
  */
 public class FriendOperationFeedback {
 

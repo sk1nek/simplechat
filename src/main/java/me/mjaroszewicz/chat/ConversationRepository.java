@@ -28,17 +28,6 @@ public class ConversationRepository {
 
     private final static Logger log = LoggerFactory.getLogger(ConversationRepository.class);
 
-    /**
-     *
-     * @return Reference to currently authenticated user.
-     */
-    private User getLoggedUser(){
-
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        String userName = auth.getName();
-
-        return userRepo.findOneByName(userName);
-    }
 
     /**
      *
@@ -62,8 +51,4 @@ public class ConversationRepository {
         }
 
     }
-
-
-
-
 }

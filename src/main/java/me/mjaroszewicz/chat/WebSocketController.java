@@ -36,7 +36,6 @@ public class WebSocketController {
         this.template = template;
     }
 
-
     /**
      * This method redirects message to individual user socket. Messages longer than 255 chars are trimmed to this size.
      */

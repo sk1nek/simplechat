@@ -4,6 +4,7 @@ $(document).ready(function () {
     connect();
 
     $('#friend-input-box').keypress(function (e) {
+        // noinspection EqualityComparisonWithCoercionJS
         if (e.which == '13' && $('#friend-input-box').val() !== '') {
             $(this).attr("disabled", "disabled");
             stompClient.send("/addFriend", {}, $('#friend-input-box').val());
@@ -12,7 +13,7 @@ $(document).ready(function () {
 
         }
 
-    })
+    });
 
     setContextMenuAction();
 });
@@ -28,7 +29,9 @@ function connect() {
         console.log('Connected: ' + frame);
         stompClient.subscribe('/user/friendFeedback', function (feedback) {
             var obj = JSON.parse(feedback.body);
+            // noinspection EqualityComparisonWithCoercionJS
             if(obj.success && obj.type=="add"){
+                // noinspection Annotator
                 showNewFriend(obj.friendName);
             }
         });

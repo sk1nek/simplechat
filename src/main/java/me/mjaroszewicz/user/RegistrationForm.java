@@ -17,7 +17,6 @@ public class RegistrationForm {
     @Size(min = 6, max = 12)
     private String password;
 
-
     public String getName() {
         return name;
     }

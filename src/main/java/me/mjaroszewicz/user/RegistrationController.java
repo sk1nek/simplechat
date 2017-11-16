@@ -37,9 +37,6 @@ public class RegistrationController extends WebMvcConfigurerAdapter {
 
     @RequestMapping("/register")
     public String getRegistrationPage(RegistrationForm registrationForm) {
-
-//        log.info(((Authentication) SecurityContextHolder.getContext().getAuthentication()).getName());
-
         return "register";
     }
 
@@ -55,18 +52,14 @@ public class RegistrationController extends WebMvcConfigurerAdapter {
         return "redirect:/";
     }
 
-
-
     @GetMapping("/login")
     public String getLoginPage(LoginForm loginForm){
-
         return "login";
     }
 
     @PostMapping("/login")
     public String login(@ModelAttribute LoginForm loginForm){
         securityService.autologin(loginForm.getUsername(), loginForm.getPassword());
-
         return "redirect:/";
     }
 
